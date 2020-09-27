@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackContainer.CLI", "StackContainer.CLI\StackContainer.CLI.csproj", "{BCEA45D5-3AB6-4938-92C8-A9681124459F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackContainer", "StackContainer\StackContainer.csproj", "{11B0D928-1AE8-4866-9401-9C8609555009}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCEA45D5-3AB6-4938-92C8-A9681124459F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCEA45D5-3AB6-4938-92C8-A9681124459F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCEA45D5-3AB6-4938-92C8-A9681124459F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCEA45D5-3AB6-4938-92C8-A9681124459F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11B0D928-1AE8-4866-9401-9C8609555009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11B0D928-1AE8-4866-9401-9C8609555009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11B0D928-1AE8-4866-9401-9C8609555009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11B0D928-1AE8-4866-9401-9C8609555009}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
