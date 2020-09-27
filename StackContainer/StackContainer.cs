@@ -150,7 +150,7 @@ namespace StackContainer
             return encoding.GetString(ReadValue(name));
         }
 
-        public void WriteValue(string name, byte[] value, bool overwrite = false)
+        public void WriteValue(string name, byte[] value, bool overwrite = true)
         {
             if (!ValueExists(name))
                 currentContainer.Add(name, null);

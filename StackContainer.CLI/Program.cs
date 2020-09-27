@@ -10,12 +10,53 @@ namespace StackContainer.CLI
     {
         static void Main(string[] args)
         {
+            StackContainer settings = GetSettings();
+
+            settings.OpenContainer("products");
+
+            foreach (string valueName in settings.GetValueNames())
+            {
+                Console.WriteLine(settings.ReadValue(valueName, Encoding.ASCII));
+            }
+
+            settings.Back();
+
+            settings.OpenContainer("config");
+
+            bool show_help = BitConverter.ToBoolean(settings.ReadValue("show_help"), 0);
+            int id = BitConverter.ToInt32(settings.ReadValue("store_id"), 0);
+            
+            settings.Back();
+
+            if (show_help)
+            {
+                Console.WriteLine("This is help!");
+            }
+
+            Console.WriteLine("Store id : {0}", id);
+
+            if (Console.ReadLine().ToLowerInvariant().StartsWith("y"))
+            {
+                settings.OpenContainer("config");
+
+                if (settings.ValueExists("value"))
+                {
+                    Console.WriteLine(settings.ReadValue("value", Encoding.UTF8));
+                }
+
+                settings.WriteValue("value", Console.ReadLine(), Encoding.UTF8);
+                settings.Back();
+                
+                File.WriteAllBytes("settings.bin", settings.Serialize());
+            }
+
+
             string fileName = "container.bin";
             string directoryPath = Environment.CurrentDirectory;
 
             StackContainer container;
 
-            if(File.Exists(fileName))
+            if (File.Exists(fileName))
             {
                 Console.WriteLine("StackContainer To Folder");
 
@@ -36,10 +77,41 @@ namespace StackContainer.CLI
 
                 File.WriteAllBytes(fileName, containerData);
             }
-            
-            
+
+
 
         }
+
+        private static StackContainer GetSettings()
+        {
+            if (!File.Exists("settings.bin"))
+            {
+                StackContainer settings = new StackContainer();
+
+                settings.CreateContainer("products");
+
+                settings.OpenContainer("products");
+                settings.WriteValue("product1", "Product 1 Example Name", Encoding.ASCII);
+                settings.WriteValue("product2", "Product 2 Example Name", Encoding.ASCII);
+                settings.WriteValue("product3", "Product 3 Example Name", Encoding.ASCII);
+                settings.Back();
+
+                settings.CreateContainer("config");
+
+                settings.OpenContainer("config");
+                settings.WriteValue("show_help", BitConverter.GetBytes(false), true);
+                settings.WriteValue("store_id", BitConverter.GetBytes(125778), true);
+
+                settings.Back();
+                File.WriteAllBytes("setting.bin", settings.Serialize());
+                return settings;
+            }
+            else
+            {
+                return new StackContainer(File.ReadAllBytes("settings.bin"));
+            }
+        }
+
 
         private static void ExportToPath(StackContainer container, string path)
         {
